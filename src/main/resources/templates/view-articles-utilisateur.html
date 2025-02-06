@@ -1,0 +1,29 @@
+<html data-th-replace="~{layout::layout(title=~{::title}, content=~{::main})}" xmlns="http://www.w3.org/1999/html">
+
+<title>Mes Articles</title>
+
+
+<main>
+    <div class="container mt-5">
+        <h2>Mes Articles</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" th:each="article : ${articles}">
+                    <div class="card mb-4">
+                        <img src="https://placehold.co/150" class="card-img-top" alt="Image for ${article.nomArticle}" />
+                        <div class="card-body">
+                            <u><h5 class="card-title" th:text="${article.nomArticle}"></h5></u>
+                            <p class="card-text" th:text="${article.description}"></p>
+                            <ul class="list-unstyled">
+                                <li><strong>Prix :</strong> <span th:text="${article.prixVente}"></span> points</li>
+                                <li><strong>Fin de l'enchère:</strong> <span th:text="${article.dateFinEncheres}"></span></li>
+                                <li><a href="#" th:href="@{/encheres/modifier(id=${article.noArticle})}" class="btn btn-success">Modifier</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

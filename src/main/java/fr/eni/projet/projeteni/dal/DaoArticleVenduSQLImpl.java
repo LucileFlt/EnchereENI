@@ -22,6 +22,8 @@ public class DaoArticleVenduSQLImpl implements DaoArticleVendu {
     static final String SELECT_BY_CATEGORY = "select * from ARTICLES_VENDUS where no_categorie=?";
     static final String SELECT_BY_NAME = "select * from ARTICLES_VENDUS where nom_article like ?";
     static final String SELECT_BY_CATEGORY_AND_NAME = "select * from ARTICLES_VENDUS where no_categorie=? and nom_article like ?";
+    //select by user
+    static final String SELECT_BY_USER = "select * from ARTICLES_VENDUS where no_utilisateur=?";
 
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -96,4 +98,7 @@ public class DaoArticleVenduSQLImpl implements DaoArticleVendu {
     public List<ArticleVendu> findByCategoryAndName(Long categoryId, String nomArticle) {
         return jdbcTemplate.query(SELECT_BY_CATEGORY_AND_NAME, new Object[]{categoryId, "%" + nomArticle + "%"}, articleVenduRowMapper);
     }
+    //LIST ARTICLES BY USER
+    @Override
+    public List<ArticleVendu> findByUser(int no_utilisateur){return jdbcTemplate.query(SELECT_BY_USER, new Object[]{no_utilisateur}, articleVenduRowMapper);}
 }

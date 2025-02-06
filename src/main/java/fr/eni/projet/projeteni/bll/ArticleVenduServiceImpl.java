@@ -63,4 +63,7 @@ public class ArticleVenduServiceImpl implements ArticleVenduService {
         return daoArticleVendu.findByName(nomArticle);
     }
 
+    @Override
+    public List<ArticleVendu> getArticlesByUser(int no_utilisateur){return daoArticleVendu.findByUser(no_utilisateur);}
+
 }

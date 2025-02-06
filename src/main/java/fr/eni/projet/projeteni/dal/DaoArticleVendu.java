@@ -23,4 +23,7 @@ public interface DaoArticleVendu {
     List<ArticleVendu> findByName(String nomArticle);
 
     List<ArticleVendu> findByCategoryAndName(Long categoryId, String nomArticle);
+
+    //LIST ARTICLES BY USER
+    List<ArticleVendu> findByUser(int no_utilisateur);
 }
