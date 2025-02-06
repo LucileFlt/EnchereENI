@@ -36,6 +36,10 @@
           <a href="#" th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
         </div>
         <div data-th-if="${#authorization.expression('isAuthenticated()')}">
+          <a href="#" th:href="@{/encheres/profil}" class="btn btn-primary me-3">
+            <span th:text="${#authentication.name}"></span>
+            </a>
+
           <a href="#" th:href="@{/logout}" class="btn btn-primary me-3">Déconnexion</a>
         </div>
       </div>
