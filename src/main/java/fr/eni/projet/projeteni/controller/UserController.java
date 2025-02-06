@@ -1,6 +1,7 @@
 package fr.eni.projet.projeteni.controller;
 
 import fr.eni.projet.projeteni.bll.EnchereService;
+import fr.eni.projet.projeteni.bll.MyUserDetailsService;
 import fr.eni.projet.projeteni.bll.UtilisateurService;
 import fr.eni.projet.projeteni.bo.Utilisateur;
 import org.springframework.stereotype.Controller;
@@ -20,17 +21,14 @@ public class UserController {
 
     private UtilisateurService utilisateurService;
     private final EnchereService enchereService;
+    private MyUserDetailsService myUserDetailsService;
 
 
-    public UserController(UtilisateurService utilisateurService, EnchereService enchereService) {
+    public UserController(UtilisateurService utilisateurService, EnchereService enchereService, MyUserDetailsService myUserDetailsService) {
         this.utilisateurService = utilisateurService;
         this.enchereService = enchereService;
+        this.myUserDetailsService = myUserDetailsService;
     }
-
-
-
-
-
 
     @ModelAttribute("activeUser")
     public Utilisateur getActiveUser() {
@@ -84,12 +82,13 @@ public class UserController {
 
 //WORKS (STILL NEEDS PWD ENCRYPTION)
     @PostMapping("/inscription")
-    public String newCompte(Principal principal, @ModelAttribute Utilisateur utilisateur) {
-        String userName = principal.getName();
-        Utilisateur activeUser = utilisateurService.getUtilisateur(userName);
+    public String newCompte(@ModelAttribute Utilisateur utilisateur) {
+
+        System.out.println(utilisateur);
 
         utilisateurService.addUtilisateur(utilisateur);
 
+        myUserDetailsService.loadUserByUsername(utilisateur.getEmail());
 
         return "redirect:/encheres";
     }
