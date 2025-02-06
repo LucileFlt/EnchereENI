@@ -104,6 +104,8 @@ public class UserController {
         String userName = principal.getName();
         Utilisateur activeUser = utilisateurService.getUtilisateur(userName);
 
+        model.addAttribute("activeUser", activeUser);
+
         if (activeUser == null) {
             // Rediriger ou afficher un message si l'utilisateur n'existe pas
             System.out.println("error " + "Utilisateur déconnecté");
