@@ -22,4 +22,6 @@ public interface ArticleVenduService {
     List<ArticleVendu> getArticlesByCategoryAndName(Long categoryId, String nomArticle);
 
     List<ArticleVendu> getArticlesByName(String nomArticle);
+
+    List<ArticleVendu> getArticlesByUser(int no_utilisateur);
 }

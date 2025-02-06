@@ -50,6 +50,7 @@ public class EncheresController {
         return "redirect:/encheres";
     }
 
+    //LIST ALL ARTICLES
     @GetMapping
     public String encheres(@RequestParam(value = "nomArticle", required = false) String nomArticle,
                            @RequestParam(value = "categorie", required = false) Long categorieId,
@@ -75,6 +76,24 @@ public class EncheresController {
 
         return "view-encheres";
     }
+
+    //LIST USER ARTICLES
+    @GetMapping("/mes-articles")
+    public String myArticles(Principal principal, Model model) {
+
+        String userName = principal.getName();
+        int id = utilisateurService.getUtilisateur(userName).getNoUtilisateur();
+
+        var articles = articleVenduService.getArticlesByUser(id);
+        model.addAttribute("articles", articles);
+
+        if (articles == null || articles.isEmpty()) {
+           return "view-pas-darticles";
+        }
+
+        return "view-articles-utilisateur";
+    }
+
 
 
 

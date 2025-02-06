@@ -13,10 +13,6 @@
         <form method="get" action="#">
             <!-- Input for filtering by article name -->
             <input style="width: 415px" type="text" name="nomArticle" placeholder="Le nom de l'article contient" value="" />
-
-            <!-- Button to trigger search -->
-            <button style="margin-left: 10%" type="submit" class="btn btn-primary btn-lg">Rechercher</button>
-
             <!-- Category Dropdown -->
             <div class="mb-3">
                 <label for="categorie" class="form-label">Catégorie</label>
@@ -27,10 +23,10 @@
                     </th:block>
                 </select>
             </div>
+            <!-- Button to trigger search -->
+            <button type="submit" class="btn btn-primary btn-lg">Rechercher</button>
         </form>
-
     </div>
-
     <!-- Articles container -->
     <div class="container mt-5">
         <h2>Articles List</h2>
@@ -42,6 +38,7 @@
                         <div class="card-body">
                             <u><h5 class="card-title" th:text="${article.nomArticle}"></h5></u>
                             <p class="card-text" th:text="${article.description}"></p>
+                        <u>   <p class="card-text" th:text="${article.categorie.libelle}"></p> </u>
                             <ul class="list-unstyled">
                                 <li><strong>Prix :</strong> <span th:text="${article.prixVente}"></span> points</li>
                                 <li><strong>Fin de l'enchère:</strong> <span th:text="${article.dateFinEncheres}"></span></li>
@@ -53,7 +50,6 @@
             </div>
         </div>
     </div>
-
 </main>
 
 </html>
