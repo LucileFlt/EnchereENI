@@ -47,7 +47,7 @@ public class EncheresController {
         String userName = principal.getName();
         Utilisateur activeUser = utilisateurService.getUtilisateur(userName);
         encherirService.encherir(bid,id,activeUser);
-        return "redirect:/encheres";
+        return "redirect:/detail";
     }
 
     //LIST ALL ARTICLES
