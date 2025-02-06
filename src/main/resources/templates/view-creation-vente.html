@@ -1,0 +1,82 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Nouvelle Vente - ENI-Enchères</title>
+
+<main>
+    <div class="container mt-5 container-custom">
+        <h2 class="text-center mb-4">Nouvelle Vente</h2>
+
+        <div class="card shadow">
+            <form action="/encheres/cree" method="post" enctype="multipart/form-data">
+                <!-- Article et Description -->
+                <div class="mb-3">
+                    <label for="article" class="form-label">Article</label>
+                    <input type="text" class="form-control" id="article" name="nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                </div>
+
+                <!-- Catégorie -->
+                <div class="mb-3">
+                    <label for="categorie" class="form-label">Catégorie</label>
+                    <select class="form-select" id="categorie" name="categorie" required>
+                        <option selected disabled>Choisir une catégorie</option>
+                        <th:block th:each="categorie : ${categories}">
+                            <option th:value="${categorie.noCategorie}" th:text="${categorie.libelle}"></option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- Prix et Dates -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="prix" class="form-label">Mise à prix (€)</label>
+                        <input type="number" class="form-control" id="prix" name="prix" step="0.01" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="debut" class="form-label">Début de l'enchère</label>
+                        <input type="date" class="form-control" id="debut" name="debut" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fin" class="form-label">Fin de l'enchère</label>
+                        <input type="date" class="form-control" id="fin" name="fin" required>
+                    </div>
+                </div>
+
+                <!-- Retrait -->
+                <fieldset class="border p-3 mt-4">
+                    <legend class="float-none w-auto px-2">Retrait</legend>
+                    <div class="mb-3">
+                        <label for="rue" class="form-label">Rue</label>
+                        <input type="text" class="form-control" id="rue" name="rue" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="code_postal" class="form-label">Code postal</label>
+                            <input type="text" class="form-control" id="code_postal" name="code_postal" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ville" class="form-label">Ville</label>
+                            <input type="text" class="form-control" id="ville" name="ville" required>
+                        </div>
+                    </div>
+                    <small class="text-muted d-block mt-2">Par défaut, le retrait est effectué à l'adresse du vendeur.</small>
+                </fieldset>
+
+                <!-- Boutons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-primary px-4">Enregistrer</button>
+                    <button type="reset" class="btn btn-secondary px-4">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</main>
+</html>

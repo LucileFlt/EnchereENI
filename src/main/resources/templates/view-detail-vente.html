@@ -1,0 +1,39 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Profil</title>
+
+
+<main class="container">
+    <div class="product-image">
+        <img src="path_to_your_image.jpg" alt="Product Image">
+    </div>
+    <div class="product-details">
+        <h2>Détail vente</h2>
+        <h3 data-th-if="${enchere!=null}" data-th-text="${enchere.getArticleVendu().getNomArticle()}"></h3>
+        <p><strong>Description :</strong><strong data-th-if="${enchere!=null}" data-th-text="${enchere.getArticleVendu().getDescription()}"></strong></p>
+        <p><strong>Catégorie :</strong><strong data-th-if="${enchere!=null}" data-th-text="${enchere.getArticleVendu().getCategorie().getLibelle()}"></strong></p>
+        <p><strong>Meilleure offre :</strong> <strong data-th-if="${enchere!=null}" data-th-text="${enchere.montant_enchere}"></strong></p>
+        <p><strong>Mise à prix :</strong> <strong data-th-if="${enchere!=null}" data-th-text="${enchere.articleVendu.miseAPrix}"></strong></p>
+        <p><strong>Début de l'enchère :</strong> <strong data-th-if="${enchere!=null}" data-th-text="${enchere.articleVendu.dateDebutEncheres}"></strong></p>
+        <p><strong>Fin de l'enchère :</strong> <strong data-th-if="${enchere!=null}" data-th-text="${enchere.articleVendu.dateFinEncheres}"></strong></p>
+        <p><strong>Retrait :</strong> <strong data-th-if="${enchere!=null}" data-th-text="${enchere.getArticleVendu().getLieuRetrait().getRue()} + ' ' + ${enchere.articleVendu.lieuRetrait.getCode_postal()} + ' ' + ${enchere.getArticleVendu().getLieuRetrait().getVille()}" ></strong></p>
+
+        <a data-th-href="@{vendeur-profil(id=${enchere.articleVendu.vendeur.noUtilisateur})}">
+            <strong>Vendeur :</strong>
+            <strong data-th-if="${enchere != null}" data-th-text="${enchere.articleVendu.vendeur.pseudo}"></strong>
+        </a>
+
+        <form method="post">
+            <label for="bid">Ma proposition :</label>
+            <input type="number" id="bid" name="bid" data-th-min="${enchere.articleVendu.miseAPrix}" data-th-value="${enchere.articleVendu.miseAPrix}">
+            <button type="submit">Enchérir</button>
+        </form>
+
+
+
+
+
+    </div>
+    <div class="clearfix"></div>
+</main>
+</html>

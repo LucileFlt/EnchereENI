@@ -1,0 +1,23 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Modifier Categorie</title>
+
+<main>
+    <form data-th-action="@{/encheres/modifier-cate(id=${categorie.noCategorie})}" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="libelle" class="form-label">Libelle</label>
+                <!-- Bind the form field to the 'libelle' attribute of the 'categorie' object -->
+                <input type="text" class="form-control" id="libelle" name="libelle"
+                       th:value="${categorie.libelle}" required>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary px-4">Modifier</button>
+                <button type="reset" class="btn btn-secondary px-4">Annuler</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+</html>

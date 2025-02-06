@@ -1,0 +1,67 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Profil</title>
+
+    <main>
+        <section class="text-center text-lg-start">
+            <style>
+                .cascading-right {
+                    margin-right: -50px;
+                }
+
+                @media (max-width: 991.98px) {
+                    .cascading-right {
+                        margin-right: 0;
+                    }
+                }
+            </style>
+
+            <!-- Jumbotron -->
+            <div class="container py-4">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card cascading-right bg-body-tertiary" style="
+            backdrop-filter: blur(30px);">
+
+                            <div class="card-body p-4 shadow-4 text-center">
+                                <h2 class="fw-bold mb-5">Connectez-vous ! </h2>
+                                <form data-th-action="@{/encheres/connexion}" method="post" class="login">
+
+
+                                    <!-- Email input -->
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example3">Identifiant</label>
+                                        <input type="email" id="form3Example3" class="form-control" placeholder ="Adresse email" required name="username"/>
+
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4">Votre mot de passe</label>
+                                        <input type="password" id="form3Example4" class="form-control"  placeholder="Mot de passe" required name="password"/>
+
+                                    </div>
+
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary me-3">Connexion</button>
+                                    <a th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <img src="../assets/femmejaune.webp" class="w-100 rounded-4 shadow-4"
+                             alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- Jumbotron -->
+        </section>
+        <!-- Section: Design Block -->
+    </main>
+
+</html>

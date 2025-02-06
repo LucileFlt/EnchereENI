@@ -1,0 +1,93 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Cree Nouvelle Categorie</title>
+
+
+
+<main>
+    <div style="margin-left: 10%; margin-bottom: 20%">
+        <h1>Categories Disponible</h1>
+        <table>
+            <tr>
+                <th>Libelle</th>
+            </tr>
+            <tr th:each="categorie : ${categories}">
+                <td th:text="${categorie.libelle}"> </td>
+
+                <td> <a class="btn btn-info" th:href="@{/encheres/modifier-cate(id=${categorie.noCategorie})}">Modifier</a></td>
+
+
+                <td>
+                    <form action="/encheres/supprimer-cate" method="POST">
+                        <input type="hidden" name="id" th:value="${categorie.noCategorie}">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                    </form>
+                </td>
+
+            </tr>
+        </table>
+
+
+
+
+        </table>
+
+    </div>
+    <div style="margin-left: 10%" class="creer">
+        <h1>créer un categorie</h1>
+        <form action="/encheres/cree-categorie" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="libelle" class="form-label">Libelle</label>
+                    <input type="text" class="form-control" id="libelle" name="libelle" required>
+                </div>
+
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary px-4">Créer</button>
+                    <button type="reset" class="btn btn-secondary px-4">Annuler</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

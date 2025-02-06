@@ -1,0 +1,82 @@
+
+<body>
+<div th:fragment="header">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary" style="height: 120px;">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <!-- Toggle button placed to the left of the logo -->
+        <button class="navbar-toggler me-1" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar brand with customizable logo -->
+        <a class="navbar-brand" href="#" th:href="@{/encheres}">
+          <img src="../assets/logo.webp" height="80" alt="MDB Logo" loading="lazy" />
+        </a>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#" th:href="@{/encheres}">Enchères</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" th:href="@{/encheres/cree}">Vendre un article</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right elements (buttons) outside the collapsible section -->
+        <div class="d-flex align-items-center" th:if="${!#authorization.expression('isAuthenticated()')}">
+          <a href="#" th:href="@{/encheres/connexion}" class="btn btn-link px-3 me-2">Se connecter</a>
+          <a href="#" th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
+        </div>
+        <div data-th-if="${#authorization.expression('isAuthenticated()')}">
+          <a href="#" th:href="@{/logout}" class="btn btn-primary me-3">Déconnexion</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <style>
+    @media (max-width: 991px) {
+      #navbarSupportedContent {
+        background-color: #D4D3DC !important;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    }
+    /* S'assurer que le menu burger s'ouvre vers le bas sans perturber la navbar */
+    .navbar-collapse {
+      position: absolute; /* Positionner le menu burger de manière absolue pour qu'il ne perturbe pas la navbar */
+      top: 100%; /* Assure que le menu se place sous la navbar */
+      left: 0;
+      right: 0;
+      background-color: #f8f9fa; /* Couleur de fond pour le menu */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour le menu */
+    }
+
+    /* Si l'écran est large, ne pas appliquer la règle ci-dessus */
+    @media (min-width: 992px) {
+      .navbar-collapse {
+        position: static; /* La navbar se comporte normalement en mode desktop */
+        box-shadow: none;
+      }
+    }
+
+    /* Pour garder la navbar au top de l'écran sans qu'elle ne bouge */
+    .navbar {
+      position: relative;
+      z-index: 9999; /* Assurer que la navbar reste au-dessus du contenu */
+    }
+
+  </style>
+  <!-- Navbar -->
+
+</div>
+</body>

@@ -1,0 +1,66 @@
+<html data-th-replace="~{layout::layout(title=~{::title},content=~{::main})}">
+
+<title>Profil</title>
+
+
+
+<main>
+  <form>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+
+        <div class="col-md-12 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+
+            <div class="card-body text-center">
+              <h1>Profil de vendeur</h1>
+              <!-- Avatar -->
+              <div class="mt-3 mb-4">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                     class="rounded-circle img-fluid" style="width: 100px;" />
+              </div>
+
+              <!-- Informations de l'utilisateur -->
+              <h4 class="mb-2" data-th-text="${activeUser.pseudo}">Pseudo</h4>
+              <p class="text-muted mb-4">
+                <span data-th-text="${activeUser.prenom}">Prénom</span>
+                <span data-th-text="${activeUser.nom}">Nom</span>
+              </p>
+
+
+
+              <!-- Formulaire de modification -->
+              <form>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <input type="text" name="email" class="form-control" required
+                           data-th-value="${activeUser.email}" placeholder="Email" disabled/>
+                  </div>
+                  <div class="col-12 mb-3">
+
+                    <input type="text" name="telephone" class="form-control" required
+                           data-th-value="${activeUser.telephone}" placeholder="Téléphone" disabled />
+                  </div>
+                  <div class="col-12 mb-3">
+                    <input type="text" name="rue" class="form-control" required
+                           data-th-value="${activeUser.rue}" placeholder="Rue" disabled />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <input type="text" name="codePostal" class="form-control" required
+                           data-th-value="${activeUser.codePostal}" placeholder="Code Postal" disabled />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <input type="text" name="ville" class="form-control" required
+                           data-th-value="${activeUser.ville}" placeholder="Ville" disabled />
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</main>

@@ -1,0 +1,59 @@
+<html data-th-replace="~{layout::layout(title=~{::title}, content=~{::main})}" xmlns="http://www.w3.org/1999/html">
+
+<title>Articles</title>
+
+<main style="margin-top: 3%">
+
+
+    <div class="container">
+        <h4>Liste des enchères</h4>
+        <h5>Filtres :</h5>
+
+        <!-- Category Selection Form -->
+        <form method="get" action="#">
+            <!-- Input for filtering by article name -->
+            <input style="width: 415px" type="text" name="nomArticle" placeholder="Le nom de l'article contient" value="" />
+
+            <!-- Button to trigger search -->
+            <button style="margin-left: 10%" type="submit" class="btn btn-primary btn-lg">Rechercher</button>
+
+            <!-- Category Dropdown -->
+            <div class="mb-3">
+                <label for="categorie" class="form-label">Catégorie</label>
+                <select class="form-select" id="categorie" name="categorie" required>
+                    <option selected disabled>Choisir une catégorie</option>
+                    <th:block th:each="categorie : ${categories}">
+                        <option th:value="${categorie.noCategorie}" th:text="${categorie.libelle}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Articles container -->
+    <div class="container mt-5">
+        <h2>Articles List</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" th:each="article : ${articles}">
+                    <div class="card mb-4">
+                        <img src="https://placehold.co/150" class="card-img-top" alt="Image for ${article.nomArticle}" />
+                        <div class="card-body">
+                            <u><h5 class="card-title" th:text="${article.nomArticle}"></h5></u>
+                            <p class="card-text" th:text="${article.description}"></p>
+                            <ul class="list-unstyled">
+                                <li><strong>Prix :</strong> <span th:text="${article.prixVente}"></span> points</li>
+                                <li><strong>Fin de l'enchère:</strong> <span th:text="${article.dateFinEncheres}"></span></li>
+                                <li><a href="#" th:href="@{/encheres/detail(id=${article.noArticle})}" class="btn btn-primary me-3">Details</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</html>
