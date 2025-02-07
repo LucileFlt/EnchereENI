@@ -57,7 +57,6 @@ public class EncheresController {
                            Model model) {
         List<ArticleVendu> articles;
 
-
         if (categorieId != null) {
             if (nomArticle != null && !nomArticle.isEmpty()) {
                 articles = articleVenduService.getArticlesByCategoryAndName(categorieId, nomArticle);
@@ -70,12 +69,13 @@ public class EncheresController {
             articles = articleVenduService.getAllArticleVendu();
         }
 
-        model.addAttribute("encheres", enchereService.getAllEnchere());
-        model.addAttribute("articles", articles);
+        // Update `encheres` to use filtered results
+        model.addAttribute("encheres", articles);
         model.addAttribute("categories", categorieService.getCategories());
 
         return "view-encheres";
     }
+
 
     //LIST USER ARTICLES
     @GetMapping("/mes-articles")
