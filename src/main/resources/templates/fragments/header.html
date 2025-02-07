@@ -2,52 +2,65 @@
 <body>
 <div th:fragment="header">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary" style="height: 120px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <!-- Container wrapper -->
     <div class="container-fluid">
-      <div class="d-flex align-items-center justify-content-between w-100">
-        <!-- Toggle button placed to the left of the logo -->
-        <button class="navbar-toggler me-1" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <!-- Toggle button (menu burger) -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <!-- Navbar brand with customizable logo -->
-        <a class="navbar-brand" href="#" th:href="@{/encheres}">
-          <img src="../assets/logo.webp" height="80" alt="MDB Logo" loading="lazy" />
-        </a>
+      <!-- Navbar brand (Logo) -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img
+                src="../assets/logo.webp"
+                height="80"
+                alt="Logo"
+                loading="lazy"
+        />
+      </a>
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left links -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#" th:href="@{/encheres}">Enchères</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" th:href="@{/encheres/cree}">Vendre un article</a>
-            </li>
-          </ul>
-        </div>
+      <!-- Collapsible wrapper (pour les liens en mode desktop et menu burger en mobile) -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/encheres}">Enchères</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{/encheres/cree}">Vendre un article</a>
+          </li>
+        </ul>
 
-        <!-- Right elements (buttons) outside the collapsible section -->
-        <div class="d-flex align-items-center" th:if="${!#authorization.expression('isAuthenticated()')}">
-          <a href="#" th:href="@{/encheres/connexion}" class="btn btn-link px-3 me-2">Se connecter</a>
-          <a href="#" th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
-        </div>
-        <div data-th-if="${#authorization.expression('isAuthenticated()')}">
-          <a href="#" th:href="@{/encheres/profil}" class="btn btn-primary me-3">
-            <span th:text="${#authentication.name}"></span>
+        <!-- Right elements (Login/SignUp or Profile/Logout) -->
+        <div class="d-flex align-items-center">
+          <div th:if="${!#authorization.expression('isAuthenticated()')}">
+            <!-- Buttons visible if not authenticated -->
+            <a href="#" th:href="@{/encheres/connexion}" class="btn btn-link px-3 me-2">Se connecter</a>
+            <a href="#" th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
+          </div>
+          <div th:if="${#authorization.expression('isAuthenticated()')}">
+            <!-- Buttons visible if authenticated -->
+            <a href="#" th:href="@{/encheres/mes-articles}" class="btn btn-info me-3">Mes articles</a>
+            <a href="#" th:href="@{/encheres/profil}" class="btn btn-primary me-3">
+              <span th:text="${#authentication.name}"></span>
             </a>
-
-          <a href="#" th:href="@{/logout}" class="btn btn-primary me-3">Déconnexion</a>
-          <a href="#" th:href="@{/encheres/mes-articles}" class="btn btn-info">Mes articles</a>
+            <a href="#" th:href="@{/logout}" class="btn btn-danger">Déconnexion</a>
+          </div>
         </div>
       </div>
+      <!-- Right elements -->
     </div>
+    <!-- Container wrapper -->
   </nav>
-
-
   <style>
     @media (max-width: 991px) {
       #navbarSupportedContent {
@@ -55,33 +68,55 @@
         padding: 10px;
         border-radius: 5px;
       }
-    }
-    /* S'assurer que le menu burger s'ouvre vers le bas sans perturber la navbar */
-    .navbar-collapse {
-      position: absolute; /* Positionner le menu burger de manière absolue pour qu'il ne perturbe pas la navbar */
-      top: 100%; /* Assure que le menu se place sous la navbar */
-      left: 0;
-      right: 0;
-      background-color: #f8f9fa; /* Couleur de fond pour le menu */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour le menu */
-    }
 
-    /* Si l'écran est large, ne pas appliquer la règle ci-dessus */
-    @media (min-width: 992px) {
-      .navbar-collapse {
-        position: static; /* La navbar se comporte normalement en mode desktop */
-        box-shadow: none;
+      /* Aligner tous les éléments dans le menu burger */
+      .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;  /* Centrer les éléments verticalement */
+        align-items: flex-start;  /* Aligner à gauche pour les éléments principaux */
+      }
+
+      /* Les items du menu burger avec un alignement à gauche */
+      .navbar-nav .nav-item {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;  /* Alignement à gauche */
+        margin-bottom: 10px; /* Espacement uniforme entre les éléments */
+      }
+
+      /* Pour chaque lien (Enchères, Vendre un article) */
+      .navbar-nav .nav-item .nav-link {
+        display: block;  /* S'étend sur toute la largeur */
+        width: 100%;  /* Prendre toute la largeur */
+        text-align: left;  /* Aligné à gauche */
+        padding-left: 20px;  /* Espacement à gauche */
+        margin-bottom: 10px; /* Espacement uniforme */
+      }
+
+      /* Centrer les boutons de connexion et d'inscription */
+      .d-flex.align-items-center .btn,
+      .d-flex.align-items-center .btn-link,
+      .d-lg-none .btn-info,
+      .d-lg-none .btn-danger {
+        display: block;  /* S'étend sur toute la largeur */
+        width: 100%;  /* Prendre toute la largeur */
+        margin-bottom: 10px; /* Espacement uniforme */
+        text-align: center;  /* Centrer le texte */
+        justify-content: center;  /* Centrer les éléments dans leur conteneur */
       }
     }
 
-    /* Pour garder la navbar au top de l'écran sans qu'elle ne bouge */
-    .navbar {
-      position: relative;
-      z-index: 9999; /* Assurer que la navbar reste au-dessus du contenu */
-    }
+
+
+
+
+
+
+
+
 
   </style>
-  <!-- Navbar -->
 
-</div>
 </body>
