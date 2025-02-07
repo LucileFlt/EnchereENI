@@ -36,6 +36,7 @@
                         <label for="prix" class="form-label">Mise à prix (€)</label>
                         <input type="number" class="form-control" id="prix" name="prix" step="0.01" required>
                     </div>
+
                     <div class="col-md-4">
                         <label for="debut" class="form-label">Début de l'enchère</label>
                         <input type="date" class="form-control" id="debut" name="debut" required>
@@ -45,6 +46,19 @@
                         <input type="date" class="form-control" id="fin" name="fin" required>
                     </div>
                 </div>
+
+<!--                u can only select atleast todays date-->
+                <script>
+                    // Get today's date
+                    let today = new Date().toISOString().split('T')[0];
+
+                    // Set the min attribute to today's date
+                    document.getElementById('debut').setAttribute('min', today);
+                    document.getElementById('fin').setAttribute('min', today);
+                </script>
+
+
+
 
                 <!-- Retrait -->
                 <fieldset class="border p-3 mt-4">

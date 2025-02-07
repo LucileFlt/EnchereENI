@@ -52,6 +52,17 @@
                     </div>
                 </div>
 
+
+                <!--                u can only select atleast todays date-->
+                <script>
+                    // Get today's date
+                    let today = new Date().toISOString().split('T')[0];
+
+                    // Set the min attribute to today's date
+                    document.getElementById('debut').setAttribute('min', today);
+                    document.getElementById('fin').setAttribute('min', today);
+                </script>
+
                 <!-- Retrait -->
                 <fieldset class="border p-3 mt-4">
                     <legend class="float-none w-auto px-2">Retrait</legend>
