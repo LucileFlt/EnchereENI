@@ -65,8 +65,9 @@
                 <span data-th-text="${activeUser.prenom}">Prénom</span>
                 <span data-th-text="${activeUser.nom}">Nom</span>
               </p>
-
-
+              <div style="margin-bottom: 10px">
+              <p style="display: inline;">Crédit:</p> <span data-th-text="${activeUser.credit}" style="display: inline;"></span>
+            </div>
 
               <!-- Formulaire de modification -->
               <form data-th-action="@{/encheres/profil}" method="post">
