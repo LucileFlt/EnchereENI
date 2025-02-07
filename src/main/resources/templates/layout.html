@@ -29,6 +29,46 @@
 
             text-align: center; /* Centrer le texte dans le footer */
         }
+
+
+        /* styles.css */
+
+        /* Ensure the card has a smooth transition */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Subtle zoom-in and shadow on hover */
+        .card:hover {
+            transform: scale(1.05); /* Slight zoom-in */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+            background-color: #f8f9fa; /* Light background change */
+        }
+
+        /* Keep the image scale smooth */
+        .card img {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05); /* Slight zoom on the image */
+        }
+
+        /* Change the title color on hover */
+        .card:hover .card-title {
+            color: #007bff; /* Change the title color to blue */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Smooth transition for the text content */
+        .card-body {
+            transition: background-color 0.3s ease;
+        }
+
+        .card:hover .card-body {
+            background-color: #f1f3f5; /* Slight background change on hover */
+        }
+
     </style>
 </head>
 <header>
