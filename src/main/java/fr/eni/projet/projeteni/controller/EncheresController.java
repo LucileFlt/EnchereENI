@@ -47,7 +47,7 @@ public class EncheresController {
         String userName = principal.getName();
         Utilisateur activeUser = utilisateurService.getUtilisateur(userName);
         encherirService.encherir(bid,id,activeUser);
-        return "redirect:/detail";
+        return "redirect:/";
     }
 
     //LIST ALL ARTICLES
@@ -70,7 +70,7 @@ public class EncheresController {
             articles = articleVenduService.getAllArticleVendu();
         }
 
-
+        model.addAttribute("encheres", enchereService.getAllEnchere());
         model.addAttribute("articles", articles);
         model.addAttribute("categories", categorieService.getCategories());
 

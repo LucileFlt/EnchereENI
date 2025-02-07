@@ -19,7 +19,54 @@ import java.util.List;
 @Repository
 public class DaoEncheresSQLImpl implements DaoEncheres {
 
-    static final String SELECT_ALL = "select * from ENCHERES";
+    static final String SELECT_ALL = "SELECT\n" +
+            "    e.no_utilisateur,\n" +
+            "    e.no_article,\n" +
+            "    e.date_enchere,\n" +
+            "    e.montant_enchere,\n" +
+            "    a.no_utilisateur AS no_utilisateur_vendeur,\n" +
+            "    a.nom_article,\n" +
+            "    a.description,\n" +
+            "    a.date_debut_encheres,\n" +
+            "    a.date_fin_encheres,\n" +
+            "    a.prix_initial,\n" +
+            "    a.prix_vente,\n" +
+            "    ue.pseudo AS enchere_pseudo,\n" +
+            "    ue.nom AS enchere_nom,\n" +
+            "    ue.prenom AS enchere_prenom,\n" +
+            "    ue.email AS enchere_email,\n" +
+            "    ue.telephone AS enchere_telephone,\n" +
+            "    ue.rue AS enchere_utilisateur_rue,\n" +
+            "    ue.code_postal AS enchere_utilisateur_code_postal,\n" +
+            "    ue.ville AS enchere_utilisateur_ville,\n" +
+            "    ue.credit AS enchere_credit,\n" +
+            "    ua.pseudo AS article_pseudo,\n" +
+            "    ua.nom AS article_nom,\n" +
+            "    ua.prenom AS article_prenom,\n" +
+            "    ua.email AS article_email,\n" +
+            "    ua.telephone AS article_telephone,\n" +
+            "    ua.rue AS article_utilisateur_rue,\n" +
+            "    ua.code_postal AS article_utilisateur_code_postal,\n" +
+            "    ua.ville AS article_utilisateur_ville,\n" +
+            "    ua.credit AS article_credit,\n" +
+            "    r.rue AS retrait_rue,\n" +
+            "    r.code_postal AS retrait_code_postal,\n" +
+            "    r.ville AS retrait_ville,\n" +
+            "    c.libelle AS categorie_libelle\n" +
+            "FROM\n" +
+            "    ENCHERES e\n" +
+            "JOIN\n" +
+            "    ARTICLES_VENDUS a ON e.no_article = a.no_article\n" +
+            "LEFT JOIN\n" +
+            "    UTILISATEURS ue ON e.no_utilisateur = ue.no_utilisateur\n" +
+            "JOIN\n" +
+            "    UTILISATEURS ua ON a.no_utilisateur = ua.no_utilisateur\n" +
+            "LEFT JOIN\n" +
+            "    RETRAITS r ON a.no_article = r.no_article\n" +
+            "JOIN\n" +
+            "    CATEGORIES c ON a.no_categorie = c.no_categorie\n" +
+            "WHERE\n" +
+            "( e.no_utilisateur IS NULL OR e.no_utilisateur = 0 OR ue.no_utilisateur IS NOT NULL);";
     static final String SELECT_BY_ID = "SELECT\n" +
             "    e.no_utilisateur,\n" +
             "    e.no_article,\n" +

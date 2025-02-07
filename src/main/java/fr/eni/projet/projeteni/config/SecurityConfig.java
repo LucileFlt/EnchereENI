@@ -62,6 +62,7 @@ public class SecurityConfig {
             auth.requestMatchers("/CSS/*").permitAll();
             auth.requestMatchers("/assets/*").permitAll();
             auth.requestMatchers("/encheres/inscription").permitAll();
+            auth.requestMatchers("/encheres").permitAll();
             auth.anyRequest().authenticated();
         }
         ));

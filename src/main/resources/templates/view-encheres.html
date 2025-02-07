@@ -32,17 +32,17 @@
         <h2>Articles List</h2>
         <div class="container">
             <div class="row">
-                <div class="col-md-3" th:each="article : ${articles}">
+                <div class="col-md-3" th:each="enchere : ${encheres}">
                     <div class="card mb-4">
                         <img src="https://placehold.co/150" class="card-img-top" alt="Image for ${article.nomArticle}" />
                         <div class="card-body">
-                            <u><h5 class="card-title" th:text="${article.nomArticle}"></h5></u>
-                            <p class="card-text" th:text="${article.description}"></p>
-                        <u>   <p class="card-text" th:text="${article.categorie.libelle}"></p> </u>
+                            <u><h5 class="card-title" th:text="${enchere.articleVendu.nomArticle}"></h5></u>
+                            <p class="card-text" th:text="${enchere.articleVendu.description}"></p>
+                        <u>   <p class="card-text" th:text="${enchere.articleVendu.categorie.libelle}"></p> </u>
                             <ul class="list-unstyled">
-                                <li><strong>Prix :</strong> <span th:text="${article.prixVente}"></span> points</li>
-                                <li><strong>Fin de l'enchère:</strong> <span th:text="${article.dateFinEncheres}"></span></li>
-                                <li><a href="#" th:href="@{/encheres/detail(id=${article.noArticle})}" class="btn btn-primary me-3">Details</a></li>
+                                <li><strong>Prix :</strong> <span th:text="${enchere.articleVendu.prixVente}"></span> points</li>
+                                <li><strong>Fin de l'enchère:</strong> <span th:text="${enchere.articleVendu.dateFinEncheres}"></span></li>
+                                <li data-th-if="${#authorization.expression('isAuthenticated()')}"><a href="#" th:href="@{/encheres/detail(id=${enchere.articleVendu.noArticle})}" class="btn btn-primary me-3">Details</a></li>
                             </ul>
                         </div>
                     </div>

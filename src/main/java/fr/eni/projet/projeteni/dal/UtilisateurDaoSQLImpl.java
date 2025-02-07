@@ -40,12 +40,18 @@ public class UtilisateurDaoSQLImpl implements UtilisateurDao {
 
     @Override
     public Utilisateur read(String email) {
-        return jdbcTemplate.queryForObject(SELECT_BY_PSEUDO, BeanPropertyRowMapper.newInstance(Utilisateur.class), email);
+        try {
+            return jdbcTemplate.queryForObject(SELECT_BY_PSEUDO, BeanPropertyRowMapper.newInstance(Utilisateur.class), email);
+        }catch (Exception e) {}
+        return null;
     }
 
     @Override
     public Utilisateur read(int no_utilisateur) {
-        return jdbcTemplate.queryForObject(SELECT_BY_ID, BeanPropertyRowMapper.newInstance(Utilisateur.class), no_utilisateur);
+        try {
+            return jdbcTemplate.queryForObject(SELECT_BY_ID, BeanPropertyRowMapper.newInstance(Utilisateur.class), no_utilisateur);
+        }catch (Exception e) {}
+        return null;
     }
 
     @Override
