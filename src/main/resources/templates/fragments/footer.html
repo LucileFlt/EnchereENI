@@ -7,7 +7,7 @@
             <!-- Grid container -->
             <div class="container p-4 pb-0">
                 <!-- Section: CTA -->
-                <section class="">
+                <section data-th-if="${!#authorization.expression('isAuthenticated()')}" class="">
                     <p class="d-flex justify-content-center align-items-center">
                         <span class="me-3">Inscrivez-vous gratuitement ! </span>
                         <a href="#" th:href="@{/encheres/inscription}" class="btn btn-primary me-3">S'inscrire</a>
